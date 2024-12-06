@@ -16,8 +16,17 @@ import { socket } from "@/socket";
 import { Skeleton } from "@/components/ui/skeleton";
 import CardSolTransaction from "@/components/card-sol-transaction";
 import { useRouter } from "next/router";
+import { Moon, MoonIcon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function DashboardPage() {
+  const { setTheme } = useTheme();
   const router = useRouter();
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
@@ -92,18 +101,42 @@ export default function DashboardPage() {
   }, [filter]);
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-slate-100 dark:bg-zinc-950">
       <div className="flex flex-row justify-between items-center">
-        <h1 className="text-3xl font-bold mb-6">Neoscoop Dashboard</h1>
-        <Button
-          onClick={() =>
-            signOut({ redirect: false }).then(() => {
-              router.push("/auth/signin");
-            })
-          }
-        >
-          Sign Out
-        </Button>
+        <h1 className="text-3xl text-zinc-950  dark:text-slate-100 font-bold mb-6">
+          Neoscoop Dashboard
+        </h1>
+        <div className="flex flex-row gap-4 justify-center items-center">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Button
+            onClick={() =>
+              signOut({ redirect: false }).then(() => {
+                router.push("/auth/signin");
+              })
+            }
+          >
+            Sign Out
+          </Button>
+        </div>
       </div>
       <CardSolTransaction statusPerDay={statusPerDay} amount={amount} />
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
