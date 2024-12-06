@@ -40,16 +40,17 @@ export default function LoginForm() {
     }
 
     try {
-      const isAuthenticated = await signIn("credentials", {
+      const result = await signIn("credentials", {
         redirect: false,
         username,
         password,
       });
-      if (isAuthenticated) {
+
+      if (result?.error) {
+        setError("Invalid username or password.");
+      } else {
         // Redirect to dashboard or home page
         router.push("/dashboard");
-      } else {
-        setError("Invalid username or password.");
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
