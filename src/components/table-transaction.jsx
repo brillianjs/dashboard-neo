@@ -27,6 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Badge } from "./ui/badge";
 
 export default function TableTransaction({ tx, setFilter }) {
   const columns = [
@@ -141,8 +142,6 @@ export default function TableTransaction({ tx, setFilter }) {
     return items;
   };
 
-  console.log(page);
-
   return (
     <div className="py-10">
       <Table>
@@ -163,7 +162,7 @@ export default function TableTransaction({ tx, setFilter }) {
             <TableRow key={item.transaction_id}>
               <TableCell>
                 <Link href={"#"}>
-                  <p className="truncate hover:text-blue-500 transition-all max-w-[250px] bg-gray-800 text-xs overflow-hidden rounded-lg p-1 cursor-pointer">
+                  <p className="truncate hover:text-blue-500 transition-all max-w-[250px] text-xs overflow-hidden rounded-lg p-1 cursor-pointer">
                     {item.wallet_address}
                   </p>
                 </Link>
@@ -211,13 +210,13 @@ export default function TableTransaction({ tx, setFilter }) {
                 {/* <p className="truncate max-w-[250px]">{item.error_message}</p> */}
               </TableCell>
               <TableCell>
-                <p
+                <Badge
                   className={`${
-                    item.status == "failed" ? "bg-red-500" : "bg-green-500"
-                  } font-semibold text-xs rounded-lg px-2`}
+                    item.status == "success" ? "bg-green-500" : "bg-red-500"
+                  }`}
                 >
                   {item.status.toUpperCase()}
-                </p>
+                </Badge>
               </TableCell>
               <TableCell>
                 <p className="truncate max-w-[250px]">{item.log_message}</p>
