@@ -50,8 +50,8 @@ export const authOptions = {
 async function authenticateUser(username, password) {
   // Replace this with your own logic to authenticate the user
   // For example, you can query your database to find the user
-  if (username === "testuser" && password === "password") {
-    return { id: 1, name: "Test User" };
+  if (username === "admin" && password === "admin") {
+    return { id: 1, name: "John Doe", email: "johndoe@mail.com" };
   }
   return null;
 }
