@@ -35,6 +35,7 @@ export default function TableTransaction({ tx, setFilter }) {
     "dex",
     "pair_address",
     "token_address",
+    "amount",
     "signature",
     "transaction_type",
     "error_message",
@@ -189,6 +190,11 @@ export default function TableTransaction({ tx, setFilter }) {
               </TableCell>
               <TableCell>
                 <p className="truncate max-w-[250px]">{item.token_address}</p>
+              </TableCell>
+              <TableCell>
+                <p className="truncate max-w-[250px]">
+                  {item.order.amount_sol} SOL
+                </p>
               </TableCell>
               <TableCell>
                 <Button>
