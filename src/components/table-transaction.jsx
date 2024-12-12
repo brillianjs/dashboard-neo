@@ -160,16 +160,16 @@ export default function TableTransaction({ tx, setFilter }) {
         </TableHeader>
         <TableBody>
           {tx?.data.map((item, idx) => (
-            <TableRow key={item.transaction_id}>
+            <TableRow key={item?.transaction_id}>
               <TableCell>
                 <Link href={"#"}>
                   <p className="truncate hover:text-blue-500 transition-all max-w-[250px] text-xs overflow-hidden rounded-lg p-1 cursor-pointer">
-                    {item.wallet_address}
+                    {item?.wallet_address}
                   </p>
                 </Link>
               </TableCell>
               <TableCell>
-                {item.dex === "raydium_amm" ? (
+                {item?.dex === "raydium_amm" ? (
                   <Image
                     src="/raydium.png"
                     alt="Raydium"
@@ -186,14 +186,14 @@ export default function TableTransaction({ tx, setFilter }) {
                 )}
               </TableCell>
               <TableCell>
-                <p className="truncate max-w-[250px]">{item.pair_address}</p>
+                <p className="truncate max-w-[250px]">{item?.pair_address}</p>
               </TableCell>
               <TableCell>
-                <p className="truncate max-w-[250px]">{item.token_address}</p>
+                <p className="truncate max-w-[250px]">{item?.token_address}</p>
               </TableCell>
               <TableCell>
                 <p className="truncate max-w-[250px]">
-                  {item.order.amount_sol} SOL
+                  {item?.order.amount_sol} SOL
                 </p>
               </TableCell>
               <TableCell>
@@ -204,40 +204,40 @@ export default function TableTransaction({ tx, setFilter }) {
               <TableCell>
                 <p
                   className={`${
-                    item.transaction_type == "sell"
+                    item?.transaction_type == "sell"
                       ? "text-red-500"
                       : "text-blue-500"
                   } font-semibold`}
                 >
-                  {item.transaction_type.toUpperCase()}
+                  {item?.transaction_type.toUpperCase()}
                 </p>
               </TableCell>
               <TableCell>
-                {/* <p className="truncate max-w-[250px]">{item.error_message}</p> */}
+                {/* <p className="truncate max-w-[250px]">{item?.error_message}</p> */}
               </TableCell>
               <TableCell>
                 <Badge
                   className={`${
-                    item.status == "success" ? "bg-green-500" : "bg-red-500"
+                    item?.status == "success" ? "bg-green-500" : "bg-red-500"
                   }`}
                 >
-                  {item.status.toUpperCase()}
+                  {item?.status.toUpperCase()}
                 </Badge>
               </TableCell>
               <TableCell>
-                <p className="truncate max-w-[250px]">{item.log_message}</p>
+                <p className="truncate max-w-[250px]">{item?.log_message}</p>
               </TableCell>
               <TableCell>
                 <p className="truncate max-w-[250px]">
-                  {new Date(item.created_at).toLocaleString()}
+                  {new Date(item?.created_at).toLocaleString()}
                 </p>
               </TableCell>
 
               <TableCell>
-                <p className="truncate max-w-[250px]">{item.note}</p>
+                <p className="truncate max-w-[250px]">{item?.note}</p>
               </TableCell>
               <TableCell>
-                <p className="truncate max-w-[250px]">{item.order_code}</p>
+                <p className="truncate max-w-[250px]">{item?.order_code}</p>
               </TableCell>
             </TableRow>
           ))}
